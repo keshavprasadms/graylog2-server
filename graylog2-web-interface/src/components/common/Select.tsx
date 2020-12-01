@@ -204,9 +204,11 @@ type Props = {
   disabled?: boolean,
   displayKey: string,
   ignoreAccents?: boolean,
+  inputId?: string,
   inputProps?: { [key: string]: any },
   matchProp?: 'any' | 'label' | 'value',
   multi?: boolean,
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void,
   onChange: (string) => void,
   onReactSelectChange?: (option: Option | Option[]) => void,
   optionRenderer?: (option: Option) => React.ReactElement,
@@ -441,6 +443,8 @@ SelectWithTheme.propTypes = {
   disabled: PropTypes.bool,
   /** Indicates which option object key contains the text to display in the select input. Same as react-select's `labelKey` prop. */
   displayKey: PropTypes.string,
+  /** Id of underlying input */
+  inputId: PropTypes.string,
   /** Indicates whether the auto-completion should return results including accents/diacritics when searching for their non-accent counterpart */
   ignoreAccents: PropTypes.bool,
   /**
@@ -452,6 +456,8 @@ SelectWithTheme.propTypes = {
   matchProp: PropTypes.oneOf(['any', 'label', 'value']),
   /** Specifies if multiple values can be selected or not. */
   multi: PropTypes.bool,
+  /** Callback when select has lost focus */
+  onBlur: PropTypes.func,
   /**
    * Callback when selected option changes. It receives the value of the
    * selected option as an argument. If `multi` is enabled, the passed
@@ -501,6 +507,8 @@ SelectWithTheme.defaultProps = {
   disabled: false,
   displayKey: 'label',
   ignoreAccents: true,
+  inputId: undefined,
+  onBlur: undefined,
   inputProps: undefined,
   matchProp: 'any',
   multi: false,
